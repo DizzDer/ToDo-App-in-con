@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Todo.h"
+#include "TodoExtras.h"
 
 using namespace std;
 
@@ -9,7 +10,7 @@ int main() {
 
     int choice{};
     while (true) {
-        cout << "\n1.Add  2.Remove  3.Toggle  4.Show  0.Exit\n> ";
+        cout << "\n1.Add 2.Remove 3.Toggle 4.Show 5.Stats 6.Search 0.Exit\n> ";
         cin >> choice;
         cin.ignore();
 
@@ -35,6 +36,15 @@ int main() {
         }
         else if (choice == 4) {
             app.showTasks();
+        }
+        else if (choice == 5) {
+            TodoExtras::showStats(app);
+        }
+        else if (choice == 6) {
+            string key;
+            cout << "Keyword: ";
+            getline(cin, key);
+            TodoExtras::searchByTitle(app, key);
         }
     }
 
