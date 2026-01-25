@@ -1,4 +1,3 @@
-
 #ifndef TODO_H
 #define TODO_H
 
@@ -33,6 +32,8 @@ public:
 
     void loadFromFile(const string& filename);
     void saveToFile(const string& filename) const;
+
+    const vector<Task>& getTasks() const;
 };
 
 #endif
