@@ -18,8 +18,15 @@ void TodoExtras::showStats(const TodoApp& app) {
 void TodoExtras::searchByTitle(const TodoApp& app, const string& keyword) {
     for (const auto& t : app.getTasks()) {
         if (t.title.find(keyword) != string::npos) {
-            cout << "[" << (t.status == Status::Done ? "x" : " ") << "] "
-                 << t.id << ". " << t.title << '\n';
+            cout << t.id << ". " << t.title << '\n';
+        }
+    }
+}
+
+void TodoExtras::clearCompleted(TodoApp& app) {
+    for (const auto& t : app.getTasks()) {
+        if (t.status == Status::Done) {
+            app.removeTask(t.id);
         }
     }
 }
