@@ -1,119 +1,95 @@
+#include "Todo.h"
 #include <iostream>
-#include <vector>
 #include <fstream>
-#include <string>
+#include <algorithm>
 
 using namespace std;
 
-class Task {
-private:
+Task* TodoApp::findTask(int id) {
+    auto it = find_if(tasks.begin(), tasks.end(),
+        [id](const Task& t) { return t.id == id; });
+    return (it != tasks.end()) ? &(*it) : nullptr;
+}
+
+void TodoApp::addTask(const string& title, int priority) {
+    tasks.push_back({nextId++, title, Status::Pending, priority});
+}
+
+void TodoApp::removeTask(int id) {
+    tasks.erase(
+        remove_if(tasks.begin(), tasks.end(),
+            [id](const Task& t) { return t.id == id; }),
+        tasks.end()
+    );
+}
+
+void TodoApp::toggleTask(int id) {
+    if (auto* task = findTask(id)) {
+        task->status =
+            (task->status == Status::Pending) ? Status::Done : Status::Pending;
+    }
+}
+
+void TodoApp::changePriority(int id, int priority) {
+    if (auto* task = findTask(id)) {
+        task->priority = priority;
+    }
+}
+
+void TodoApp::showTasks() const {
+    for (const auto& t : tasks) {
+        cout << "[" << (t.status == Status::Done ? "x" : " ") << "] "
+             << t.id << ". " << t.title
+             << " (P:" << t.priority << ")\n";
+    }
+}
+
+void TodoApp::showSortedByPriority() const {
+    vector<Task> copy = tasks;
+    sort(copy.begin(), copy.end(),
+         [](const Task& a, const Task& b) {
+             return a.priority > b.priority;
+         });
+
+    for (const auto& t : copy) {
+        cout << "[" << (t.status == Status::Done ? "x" : " ") << "] "
+             << t.id << ". " << t.title
+             << " (P:" << t.priority << ")\n";
+    }
+}
+
+void TodoApp::saveToFile(const string& filename) const {
+    ofstream out(filename);
+    for (const auto& t : tasks) {
+        out << t.id << "|" << t.title << "|"
+            << static_cast<int>(t.status) << "|"
+            << t.priority << '\n';
+    }
+}
+
+void TodoApp::loadFromFile(const string& filename) {
+    ifstream in(filename);
+    if (!in) return;
+
+    tasks.clear();
     string title;
-    bool completed;
+    int id, status, priority;
+    char sep;
 
-public:
-    Task(string t) {
-        title = t;
-        completed = false;
+    while (in >> id >> sep && sep == '|') {
+        getline(in, title, '|');
+        in >> status >> sep >> priority;
+        in.ignore();
+
+        tasks.push_back(
+            {id, title, static_cast<Status>(status), priority});
+        nextId = max(nextId, id + 1);
     }
+}
 
-    string getTitle() const { return title; }
-    bool isCompleted() const { return completed; }
-
-    void markComplete() { completed = true; }
-
-    string serialize() const {
-        return title + "|" + (completed ? "1" : "0");
-    }
-
-    static Task deserialize(const string &line) {
-        size_t sep = line.find('|');
-        Task t(line.substr(0, sep));
-        if(line.substr(sep+1) == "1") t.markComplete();
-        return t;
-    }
-};
-
-class TaskManager {
-private:
-    vector<Task> tasks;
-    string filename;
-
-public:
-    TaskManager(const string &file) : filename(file) {
-        load();
-    }
-
-    void addTask(const string &title) {
-        tasks.push_back(Task(title));
-        save();
-    }
-
-    void completeTask(int index) {
-        if(index < 1 || index > tasks.size()) {
-            cout << "Invalid task number!" << endl;
-            return;
-        }
-        tasks[index-1].markComplete();
-        save();
-    }
-
-    void listTasks() {
-        cout << "\n=== Task List ===" << endl;
-        if(tasks.empty()) cout << "No tasks yet!" << endl;
-        for(size_t i=0; i<tasks.size(); i++) {
-            cout << i+1 << ". [" << (tasks[i].isCompleted() ? "x" : " ") << "] " << tasks[i].getTitle() << endl;
-        }
-        cout << "================\n" << endl;
-    }
-
-    void save() {
-        ofstream file(filename);
-        for(auto &t : tasks) file << t.serialize() << endl;
-    }
-
-    void load() {
-        tasks.clear();
-        ifstream file(filename);
-        string line;
-        while(getline(file, line)) {
-            tasks.push_back(Task::deserialize(line));
-        }
-    }
-};
-
-int main() {
-    TaskManager manager("tasks.txt");
-
-    int choice;
-    string title;
-
-    do {
-        cout << "1. List tasks\n2. Add task\n3. Complete task\n0. Exit\nChoose: ";
-        cin >> choice;
-        cin.ignore(); // clear newline
-
-        switch(choice) {
-            case 1:
-                manager.listTasks();
-                break;
-            case 2:
-                cout << "Enter task title: ";
-                getline(cin, title);
-                manager.addTask(title);
-                break;
-            case 3:
-                cout << "Enter task number to complete: ";
-                int num;
-                cin >> num;
-                manager.completeTask(num);
-                break;
-            case 0:
-                cout << "Exiting..." << endl;
-                break;
-            default:
-                cout << "Invalid choice!" << endl;
-        }
-    } while(choice != 0);
+const vector<Task>& TodoApp::getTasks() const {
+    return tasks;
+}
 
     return 0;
 }
