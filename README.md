@@ -6,11 +6,7 @@
 
 </div>
 
-<div align="center">
-<img src="(![Image](https://github.com/user-attachments/assets/1b03111d-ee06-4754-a0cd-31fdd0ada8a2))" width="420"/>
-
-</div>
-
+![Image](https://github.com/user-attachments/assets/1b03111d-ee06-4754-a0cd-31fdd0ada8a2)
 
 **Project Name:** ToDo Task Manager  
 **Language:** C++  
