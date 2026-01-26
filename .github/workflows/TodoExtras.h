@@ -9,6 +9,7 @@ class TodoExtras {
 public:
     static void showStats(const TodoApp& app);
     static void searchByTitle(const TodoApp& app, const string& keyword);
+    static void clearCompleted(TodoApp& app);
 };
 
 #endif
