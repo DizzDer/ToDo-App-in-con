@@ -6,8 +6,6 @@
 
 </div>
 
-![Image](https://github.com/user-attachments/assets/1b03111d-ee06-4754-a0cd-31fdd0ada8a2)
-
 **Project Name:** ToDo Task Manager  
 **Language:** C++  
 **Architecture:** OOP + Modular (.h / .cpp)  
@@ -42,3 +40,6 @@ The project supports persistent storage, task prioritization, statistics, and ad
 ├── TodoExtras.h
 ├── TodoExtras.cpp
 ├── todo.db
+```
+
+![Image](https://github.com/user-attachments/assets/1b03111d-ee06-4754-a0cd-31fdd0ada8a2)
