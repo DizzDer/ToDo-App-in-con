@@ -2,13 +2,19 @@
 
 <div align="center">
 
-![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=700&center=true&vCenter=true&width=800&height=40&lines=ToDo+Task+Manager+%7C+C%2B%2B+%7C+OOP+%7C+File+I%2FO+%7C+Middle%2B)
+![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=700&center=true&vCenter=true&width=800&height=40&lines=ToDo+Task+Manager+%7C+C%2B%2B+%7C+OOP+%7C+File+I%2FO+%7C+%2B)
 
 </div>
 
+<div align="center">
+
+<img src="https://i.pinimg.com/736x/6f/9a/8f/6f9a8f6c3e4a9c7c7c8a2b7e9a5f9d2e.jpg" width="420"/>
+
+</div>
+
+
 **Project Name:** ToDo Task Manager  
 **Language:** C++  
-**Level:** Middle+  
 **Architecture:** OOP + Modular (.h / .cpp)  
 
 ### 📌 Description
