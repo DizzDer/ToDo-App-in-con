@@ -1,26 +1,43 @@
-## 🏗 My First C++ Project
+## 🏗 ToDo Task Manager (C++)
 
 <div align="center">
 
-![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=700&center=true&vCenter=true&width=700&height=40&lines=ToDo+Task+Manager+%7C+C%2B%2B+%7C+OOP+%7C+File+I%2FO)
+![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=28&pause=700&center=true&vCenter=true&width=800&height=40&lines=ToDo+Task+Manager+%7C+C%2B%2B+%7C+OOP+%7C+File+I%2FO+%7C+Middle%2B)
 
 </div>
 
-**Project Name:** ToDo Task Manager (C++)  
-**Level:** Middle (OOP, File I/O, Vectors)  
-**Description:**  
-This is my **first C++ project**, a **console-based task manager** that allows you to:  
-- Add tasks  
-- Mark tasks as completed  
-- Save and load tasks from a file  
-- List all tasks with status  
+**Project Name:** ToDo Task Manager  
+**Language:** C++  
+**Level:** Middle+  
+**Architecture:** OOP + Modular (.h / .cpp)  
 
-**Tech Used:**  
-- C++ (OOP, Classes, Vectors)  
-- File I/O for persistent storage  
-- Console interface  
+### 📌 Description
+Console-based **ToDo Task Manager** written in C++ using **OOP principles**.  
+The project supports persistent storage, task prioritization, statistics, and advanced task management.
 
-**How to Run:**  
-```bash
-g++ -std=c++17 main.cpp -o todomanager
-./todomanager
+### ⚙️ Features
+- ➕ Add tasks with **priority (1–3)**
+- ❌ Remove tasks by ID  
+- ✅ Mark tasks as completed / uncompleted  
+- 🔄 Change task priority  
+- 📊 Show task statistics (done / pending / total)  
+- 🔍 Search tasks by keyword  
+- 🧹 Clear completed tasks  
+- 📂 Save & load tasks from file  
+- 📋 Sort tasks by priority  
+
+### 🧠 Tech Stack
+- **C++17 / C++20**
+- OOP (Classes, Encapsulation)
+- STL (`vector`, `algorithm`)
+- File I/O (`fstream`)
+- Modular architecture (`.h` / `.cpp`)
+
+### 🗂 Project Structure
+```text
+├── main.cpp
+├── Todo.h
+├── Todo.cpp
+├── TodoExtras.h
+├── TodoExtras.cpp
+├── todo.db
