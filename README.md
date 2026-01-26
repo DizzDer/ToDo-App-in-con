@@ -8,7 +8,7 @@
 
 <div align="center">
 
-<img src=""C:\Users\User\Downloads\486748828_584723574589406_3457380680218432375_n.jpg"" width="420"/>
+<img src="C:\Users\User\Downloads\486748828_584723574589406_3457380680218432375_n.jpg" width="420"/>
 
 </div>
 
