@@ -15,6 +15,7 @@ struct Task {
     int id{};
     string title;
     Status status{Status::Pending};
+    int priority{1}; 
 };
 
 class TodoApp {
@@ -25,10 +26,13 @@ private:
     Task* findTask(int id);
 
 public:
-    void addTask(const string& title);
+    void addTask(const string& title, int priority = 1);
     void removeTask(int id);
     void toggleTask(int id);
+    void changePriority(int id, int priority);
+
     void showTasks() const;
+    void showSortedByPriority() const;
 
     void loadFromFile(const string& filename);
     void saveToFile(const string& filename) const;
