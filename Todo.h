@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-using namespace std;
+
 
 enum class Status {
     Pending,
@@ -13,31 +13,32 @@ enum class Status {
 
 struct Task {
     int id{};
-    string title;
+    std::string title;
     Status status{Status::Pending};
     int priority{1}; 
 };
 
 class TodoApp {
 private:
-    vector<Task> tasks;
+    std::vector<Task> tasks;
     int nextId{1};
 
     Task* findTask(int id);
 
 public:
-    void addTask(const string& title, int priority = 1);
+    void addTask(const std::string& title, int priority = 1);
     void removeTask(int id);
     void toggleTask(int id);
     void changePriority(int id, int priority);
+    void clearCompleted();
 
     void showTasks() const;
     void showSortedByPriority() const;
 
-    void loadFromFile(const string& filename);
-    void saveToFile(const string& filename) const;
+    void loadFromFile(const std::string& filename);
+    void saveToFile(const std::string& filename) const;
 
-    const vector<Task>& getTasks() const;
+    const std::vector<Task>& getTasks() const;
 };
 
 #endif

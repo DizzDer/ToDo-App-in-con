@@ -24,9 +24,5 @@ void TodoExtras::searchByTitle(const TodoApp& app, const string& keyword) {
 }
 
 void TodoExtras::clearCompleted(TodoApp& app) {
-    for (const auto& t : app.getTasks()) {
-        if (t.status == Status::Done) {
-            app.removeTask(t.id);
-        }
-    }
+    app.clearCompleted();
 }
